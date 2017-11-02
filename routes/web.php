@@ -11,6 +11,19 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
 });
+*/
+
+Auth::routes();
+
+Route::get('/profiles/{id}', 'ProfileController@profile');
+
+Route::get('/', 'GreetingController@index');
+
+Route::get('/threads', 'ThreadsController@index');
+
+Route::post('/threads', 'ThreadsController@store');
+
+Route::get('/threads/create', 'ThreadsController@create');
