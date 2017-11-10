@@ -4,11 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Post;
+
 class GreetingController extends Controller
 {
-    public function index()
-	{
-		$message = "Hello world.";
-		return $message;//nu þarf eg að gera return view
-	}
+	public function __construct() 
+    {
+        $this->middleware('auth')->only('index');
+    }
+
+
+	public function index()
+    {
+        $posts = Post::latest()->get();
+    	return view('layouts.welcome', compact('posts'));
+    }
 }

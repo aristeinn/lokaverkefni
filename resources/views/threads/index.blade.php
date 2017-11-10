@@ -22,6 +22,7 @@
                     </article>
                     <hr>
                     @endforeach
+                    <h2>like me<i class="fa fa-thumbs-up"></i></h2>
                 </div>
             </div>
         </div>
