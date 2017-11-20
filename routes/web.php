@@ -22,6 +22,14 @@ Route::get('/profiles/{id}', 'ProfileController@profile');
 
 Route::get('/', 'GreetingController@index');
 
+Route::get('/posts', 'PostController@index');
+
+Route::post('/posts', 'ThreadsController@store');
+
+Route::get('/posts/create', 'PostController@create');
+
+
+
 Route::get('/threads', 'ThreadsController@index');
 
 Route::post('/threads', 'ThreadsController@store');

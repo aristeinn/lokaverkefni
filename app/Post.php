@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
+    protected $fillable = ['title', 'user_id'];
+
     public function likes()
     {
         return $this->morphToMany('App\User', 'likeable')->whereDeletedAt(null);
