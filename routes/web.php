@@ -18,24 +18,14 @@
 
 Auth::routes();
 
-Route::get('/profiles/{id}', 'ProfileController@profile');
-
 Route::get('/', 'GreetingController@index');
 
 Route::get('/posts', 'PostController@index');
 
-Route::post('/posts', 'ThreadsController@store');
+Route::post('/posts', 'PostController@store');
 
 Route::get('/posts/create', 'PostController@create');
 
-
-
-Route::get('/threads', 'ThreadsController@index');
-
-Route::post('/threads', 'ThreadsController@store');
-
-Route::get('/threads/create', 'ThreadsController@create');
-
-Route::get('/threads/{id}', 'ThreadsController@show');
+Route::get('/posts/{id}', 'PostController@show');
 
 Route::get('post/like/{id}', ['as' => 'post.like', 'uses' => 'LikeController@likePost']);

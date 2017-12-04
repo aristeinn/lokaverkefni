@@ -10,6 +10,11 @@ class Post extends Model
 
     protected $fillable = ['title', 'user_id'];
 
+    public function user() 
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function likes()
     {
         return $this->morphToMany('App\User', 'likeable')->whereDeletedAt(null);

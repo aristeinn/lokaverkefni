@@ -1,23 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\D8;
 use Illuminate\Http\Request;
 
 use App\Post;
+use App\User;
 
 class PostController extends Controller
 {
 	public function __construct() 
     {
-        $this->middleware('auth')->only('create', 'store');
+        $this->middleware('auth')->only('index','create', 'store');
     }
-
 
 	public function index()
     {
         $posts = Post::latest()->get();
-    	return view('posts.posts', compact('posts'));
+        $users = User::latest()->get();
+    	return view('posts.posts', compact('posts','users'));
     }
 
     public function create()
@@ -28,7 +29,6 @@ class PostController extends Controller
     public function show($id)
     {
     	$post = Post::find($id);
-
         return view('posts.show', compact('post'));
     }
 
@@ -39,6 +39,8 @@ class PostController extends Controller
             'title' => 'required|max:40',
             'body' => 'required|min:20',
         ]);*/
+
+        $request->session()->flash('success', 'Post successfully added!');
 
         $this->validate($request, [
             'title'=>'required|max:40'
